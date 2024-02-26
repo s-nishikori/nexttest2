@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 // components
 import Header from '@/components/Header'
@@ -19,11 +20,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en"
+      suppressHydrationWarning
+    >
       <body className={inter.className}>
-        <Header />
-        {children}
-        <Footer />
+        <ThemeProvider>
+          <Header />
+            {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
